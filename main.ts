@@ -1,28 +1,25 @@
 function circle () {
-    while (On == 0) {
-        basic.showLeds(`
-            . . . . .
-            . # # # .
-            . # . # .
-            . # # # .
-            . . . . .
-            `)
-        basic.clearScreen()
-        basic.pause(100)
-    }
+    basic.showLeds(`
+        . . # . .
+        . # . # .
+        # . # . #
+        . # . # .
+        . . # . .
+        `)
+    basic.clearScreen()
+    basic.pause(500)
 }
-input.onButtonPressed(Button.B, function () {
-    On = 1
-})
-let On = 0
-On = 0
-basic.forever(function () {
-    if (input.buttonIsPressed(Button.A) && On == 0) {
-        circle()
+input.onButtonPressed(Button.A, function () {
+    if (On == true) {
+        On = false
     } else {
-        if (On == 1 && input.buttonIsPressed(Button.A)) {
-            basic.showNumber(2)
-            On = 0
-        }
+        On = true
+    }
+})
+let On = false
+On = false
+basic.forever(function () {
+    while (On == true) {
+        circle()
     }
 })
